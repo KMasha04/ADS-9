@@ -1,39 +1,54 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
-#include <iostream>
 #include <chrono>
-#include <random>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include <vector>
 
-using namespace std;
+int factorial(int n) {
+    int res = 1;
+    for (int i = 2; i <= n; ++i) res *= i;
+    return res;
+}
 
 int main() {
-    vector<int> sizes = {3, 4, 5, 6, 7, 8};
-    for (int n : sizes) {
-        vector<char> elements(n);
-        for (int i = 0; i < n; ++i)
-            elements[i] = '1' + i;
-
-        PMTree tree(elements);
-        auto start = chrono::high_resolution_clock::now();
-        auto perms = getAllPerms(tree);
-        auto end = chrono::high_resolution_clock::now();
-        auto duration_all = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-        mt19937 rng(random_device{}());
-        uniform_int_distribution<int> dist(1, factorial(n));
-
-        start = chrono::high_resolution_clock::now();
-        getPerm1(tree, dist(rng));
-        end = chrono::high_resolution_clock::now();
-        auto duration_perm1 = chrono::duration_cast<chrono::microseconds>(end - start).count();
-
-        start = chrono::high_resolution_clock::now();
-        getPerm2(tree, dist(rng));
-        end = chrono::high_resolution_clock::now();
-        auto duration_perm2 = chrono::duration_cast<chrono::microseconds>(end - start).count();
-
-        cout << "n=" << n << " getAllPerms: " << duration_all << "ms, "
-             << "getPerm1: " << duration_perm1 << "us, "
-             << "getPerm2: " << duration_perm2 << "us" << endl;
+    std::srand(std::time(nullptr));
+    std::vector<char> sample = {'1', '2', '3'};
+    PMTree tree(sample);
+    std::cout << "All permutations:\n";
+    auto perms = getAllPerms(tree);
+    for (const auto& p : perms) {
+        for (char c : p) std::cout << c;
+        std::cout << "\n";
+    }
+    for (int n = 3; n <= 8; ++n) {
+        std::vector<char> alphabet(n);
+        for (int i = 0; i < n; ++i) 
+            alphabet[i] = '1' + i;
+        
+        PMTree tree(alphabet);
+        int total = factorial(n);
+        int num = rand() % total + 1;
+        
+        auto start = std::chrono::high_resolution_clock::now();
+        auto all = getAllPerms(tree);
+        auto end = std::chrono::high_resolution_clock::now();
+        double t1 = std::chrono::duration<double>(end - start).count();
+        
+        start = std::chrono::high_resolution_clock::now();
+        getPerm1(tree, num);
+        end = std::chrono::high_resolution_clock::now();
+        double t2 = std::chrono::duration<double>(end - start).count();
+        
+        start = std::chrono::high_resolution_clock::now();
+        getPerm2(tree, num);
+        end = std::chrono::high_resolution_clock::now();
+        double t3 = std::chrono::duration<double>(end - start).count();
+        
+        std::cout << "n=" << n << " getAllPerms: " << t1 << "s "
+                  << "getPerm1: " << t2 << "s "
+                  << "getPerm2: " << t3 << "s\n";
     }
     return 0;
 }
