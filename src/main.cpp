@@ -28,7 +28,7 @@ int main() {
             alphabet[i] = '1' + i;
         PMTree tree(alphabet);
         int total = factorial(n);
-        int num = rand() % total + 1;
+        int num = rand() % total + 1; // NOLINT
         auto start = std::chrono::high_resolution_clock::now();
         auto all = getAllPerms(tree);
         auto end = std::chrono::high_resolution_clock::now();
