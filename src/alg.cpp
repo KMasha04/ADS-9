@@ -2,6 +2,27 @@
 #include <algorithm>
 #include <vector>
 #include "tree.h"
+namespace {
+void collect(Node* node, std::vector<char>& path,
+            std::vector<std::vector<char>>& out);
+}
+namespace {
+void collect(Node* node, std::vector<char>& path,
+            std::vector<std::vector<char>>& out) {
+    if (node->value != 0)
+        path.push_back(node->value);
+    if (node->children.empty()) {
+        if (!path.empty())
+            out.push_back(path);
+    } else {
+        for (auto* child : node->children)
+            collect(child, path, out);
+    }
+    if (node->value != 0)
+        path.pop_back();
+}
+}
+
 Node::Node(char val) : value(val) {}
 PMTree::PMTree(const std::vector<char>& items) : root(nullptr), totalPerms(1) {
     for (size_t i = 2; i <= items.size(); ++i)
