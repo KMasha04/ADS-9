@@ -21,7 +21,7 @@ void collect(Node* node, std::vector<char>& path,
     if (node->value != 0)
         path.pop_back();
 }
-}
+} // namespace
 
 Node::Node(char val) : value(val) {}
 PMTree::PMTree(const std::vector<char>& items) : root(nullptr), totalPerms(1) {
