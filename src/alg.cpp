@@ -4,8 +4,10 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
+#include  <vector>
 
-void collect(Node* node, std::vector<char>& path, std::vector<std::vector<char>>& result) {
+void collect(Node* node, std::vector<char>&
+ path, std::vector<std::vector<char>>& result) {
     if (node->value != '\0') {
         path.push_back(node->value);
     }
@@ -38,7 +40,8 @@ std::vector<char> getPerm1(PMTree& tree, int num) {
     return {};
 }
 
-bool getByIndex(Node* node, int& index, int target, std::vector<char>& path, std::vector<char>& result) {
+bool getByIndex(Node* node, int& index, int target,
+std::vector<char>& path, std::vector<char>& result) {
     if (node->value != '\0') {
         path.push_back(node->value);
     }
