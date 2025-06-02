@@ -2,6 +2,17 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include "tree.h"
+
+PMTree::PMTree(const std::vector<char>& items) {
+}
+PMTree::~PMTree() {
+}
+size_t PMTree::getSize() const {
+    return 0;
+}
+void PMTree::resetRoot() {
+}
 
 struct Node {
     char value;
