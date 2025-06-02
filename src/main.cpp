@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #include <iostream>
-#include "tree.h"
 #include  <vector>
+#include "tree.h"
 
 int main() {
     std::vector<char> items = {'a', 'b', 'c'};
