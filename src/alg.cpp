@@ -1,11 +1,11 @@
 // Copyright 2022 NNTU-CS
 #include "alg.h"
 #include  <cstdlib>
-#include  <iostream>
-#include  <fstream>
 #include  <locale>
-#include  "tree.h"
+#include  <fstream>
+#include  <iostream>
 #include  <vector>
+#include  "tree.h"
 
 void collect(Node* node, std::vector<char>&
 path, std::vector<std::vector<char>>& result) {
