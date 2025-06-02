@@ -1,13 +1,14 @@
 // Copyright 2022 NNTU-CS
+#include "alg.h"
+#include  <cstdlib>
 #include  <iostream>
 #include  <fstream>
 #include  <locale>
-#include  <cstdlib>
 #include  "tree.h"
 #include  <vector>
 
 void collect(Node* node, std::vector<char>&
- path, std::vector<std::vector<char>>& result) {
+path, std::vector<std::vector<char>>& result) {
     if (node->value != '\0') {
         path.push_back(node->value);
     }
