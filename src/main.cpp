@@ -4,7 +4,7 @@
 #include "tree.h"
 
 int main() {
-    std::vector<char> items = {'a', 'b', 'c'};
+    std::vector<char> items = {'1', '2', '3'};
     PMTree tree(items);
 
     std::cout << "Total permutations: " << tree.getSize() << "\n\n";
