@@ -3,64 +3,28 @@
 #define INCLUDE_TREE_H_
 
 #include <vector>
-#include <iostream>
-
 
 struct Node {
     char value;
     std::vector<Node*> children;
-    explicit Node(char val) : value(val) {}
+    explicit Node(char val);
 };
 
 class PMTree {
  public:
-    explicit PMTree(const std::vector<char>& items) {
-        totalPerms = 0;
-        root = new Node('\0');
-        build(root, items);
-    }
+    explicit PMTree(const std::vector<char>& items);
+    ~PMTree();
 
-    ~PMTree() {
-        clear(root);
-    }
-
-    Node* getRoot() {
-        return root;
-    }
-
-    int getSize() const {
-        return totalPerms;
-    }
-
-    void resetRoot() {
-        clear(root);
-        root = new Node('\0');
-        totalPerms = 0;
-    }
+    Node* getRoot();
+    int getSize() const;
+    void resetRoot();
 
  private:
     Node* root;
     int totalPerms;
 
-    void build(Node* node, std::vector<char> items) {
-    std::sort(items.begin(), items.end());
-    do {
-        Node* current = node;
-        for (char c : items) {
-            Node* child = new Node(c);
-            current->children.push_back(child);
-            current = child;
-        }
-        ++totalPerms;
-    } while (std::next_permutation(items.begin(), items.end()));
-    }
-    void clear(Node* node) {
-        if (!node) return;
-        for (Node* child : node->children) {
-            clear(child);
-        }
-        delete node;
-    }
+    void build(Node* node, std::vector<char> items);
+    void clear(Node* node);
 };
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
