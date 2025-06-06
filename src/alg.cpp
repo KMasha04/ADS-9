@@ -23,6 +23,7 @@ path, std::vector<std::vector<char>>& result) {
     if (!path.empty()) {
         path.pop_back();
     }
+    if (!node) return;
 }
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree) {
@@ -64,6 +65,7 @@ std::vector<char>& path, std::vector<char>& result) {
         path.pop_back();
     }
     return false;
+    if (!node) return false;
 }
 
 std::vector<char> getPerm2(PMTree& tree, int num) {
