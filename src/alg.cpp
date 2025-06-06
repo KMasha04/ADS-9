@@ -1,11 +1,8 @@
 // Copyright 2022 NNTU-CS
-#include  <cstdlib>
-#include  <locale>
-#include  <fstream>
-#include  <iostream>
-#include  <vector>
-#include  "tree.h"
+#include "tree.h"
 #include <algorithm>
+
+Node::Node(char val) : value(val) {}
 
 PMTree::PMTree(const std::vector<char>& items) {
     totalPerms = 0;
@@ -55,7 +52,6 @@ void PMTree::clear(Node* node) {
     }
     delete node;
 }
-
 
 void collect(Node* node, std::vector<char>& path, std::vector<std::vector<char>>& result) {
     if (node->value != '\0') {
