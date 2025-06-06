@@ -43,6 +43,7 @@ std::vector<char> getPerm1(PMTree& tree, int num) {
 
 bool getByIndex(Node* node, int& index, int target,
 std::vector<char>& path, std::vector<char>& result) {
+    if (!node) return false;
     if (node->value != '\0') {
         path.push_back(node->value);
     }
@@ -65,7 +66,6 @@ std::vector<char>& path, std::vector<char>& result) {
         path.pop_back();
     }
     return false;
-    if (!node) return false;
 }
 
 std::vector<char> getPerm2(PMTree& tree, int num) {
