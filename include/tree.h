@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 struct Node {
     char value;
@@ -42,22 +43,17 @@ class PMTree {
     int totalPerms;
 
     void build(Node* node, std::vector<char> items) {
-        if (items.empty()) {
-            ++totalPerms;
-            return;
-        }
-
-        for (size_t i = 0; i < items.size(); ++i) {
-            char c = items[i];
+    std::sort(items.begin(), items.end());
+    do {
+        Node* current = node;
+        for (char c : items) {
             Node* child = new Node(c);
-            node->children.push_back(child);
-
-            std::vector<char> remaining = items;
-            remaining.erase(remaining.begin() + i);
-            build(child, remaining);
+            current->children.push_back(child);
+            current = child;
         }
+        ++totalPerms;
+    } while (std::next_permutation(items.begin(), items.end()));
     }
-
     void clear(Node* node) {
         if (!node) return;
         for (Node* child : node->children) {
@@ -69,6 +65,12 @@ class PMTree {
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
 std::vector<char> getPerm1(PMTree& tree, int num);
+auto all = getAllPerms(tree);
+    if (num >= 0 && num < static_cast<int>(all.size())) {
+        return all[num];
+    }
+    return {};
+}
 std::vector<char> getPerm2(PMTree& tree, int num);
 
 #endif  // INCLUDE_TREE_H_
