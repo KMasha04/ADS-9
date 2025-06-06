@@ -1,9 +1,9 @@
 // Copyright 2022 NNTU-CS
-#include "alg.cpp"
-#include "tree.h"
-#include <algorithm>
-#include <iostream>
+#include "alg.h"        
+#include <cstdlib>      
+#include <iostream>     
 #include <vector>
+#include <string>       
 
 Node::Node(char val) : value(val) {}
 
@@ -56,7 +56,7 @@ void PMTree::clear(Node* node) {
     delete node;
 }
 
-void collect(Node* node, std::vector<char>& path, 
+void collect(Node* node, std::vector<char>& path,
 std::vector<std::vector<char>>& result) {
     if (node->value != '\0') {
         path.push_back(node->value);
