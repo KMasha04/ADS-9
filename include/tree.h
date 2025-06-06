@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <iostream>
-#include <algorithm>
+
 
 struct Node {
     char value;
@@ -65,12 +65,6 @@ class PMTree {
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
 std::vector<char> getPerm1(PMTree& tree, int num);
-auto all = getAllPerms(tree);
-    if (num >= 0 && num < static_cast<int>(all.size())) {
-        return all[num];
-    }
-    return {};
-}
 std::vector<char> getPerm2(PMTree& tree, int num);
 
 #endif  // INCLUDE_TREE_H_
