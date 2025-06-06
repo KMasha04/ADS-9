@@ -33,7 +33,7 @@ class PMTree {
 
     void resetRoot() {
         clear(root);
-        root = nullptr;
+        root = new Node('\0');
         totalPerms = 0;
     }
 
