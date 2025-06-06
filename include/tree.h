@@ -1,25 +1,27 @@
 // Copyright 2022 NNTU-CS
-#ifndef INCLUDE_TREE_H_
-#define INCLUDE_TREE_H_
+#ifndef ALG_H
+#define ALG_H
 
 #include <vector>
 
-struct Node {
+class Node {
+public:
     char value;
     std::vector<Node*> children;
+
     explicit Node(char val);
 };
 
 class PMTree {
- public:
-    explicit PMTree(const std::vector<char>& items);
+public:
+    PMTree(const std::vector<char>& items);
     ~PMTree();
 
     Node* getRoot();
     int getSize() const;
     void resetRoot();
 
- private:
+private:
     Node* root;
     int totalPerms;
 
@@ -27,8 +29,9 @@ class PMTree {
     void clear(Node* node);
 };
 
+
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
 std::vector<char> getPerm1(PMTree& tree, int num);
 std::vector<char> getPerm2(PMTree& tree, int num);
 
-#endif  // INCLUDE_TREE_H_
+#endif // ALG_H
