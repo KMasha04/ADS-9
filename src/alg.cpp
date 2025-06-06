@@ -1,9 +1,9 @@
 // Copyright 2022 NNTU-CS
-#include "alg.h"        
-#include <cstdlib>      
-#include <iostream>     
+#include "alg.h"    
+#include <cstdlib>
+#include <iostream>
 #include <vector>
-#include <string>       
+#include <string>   
 
 Node::Node(char val) : value(val) {}
 
